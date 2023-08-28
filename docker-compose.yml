@@ -1,0 +1,27 @@
+version: "3.10"
+
+services:
+  flask_app:
+    env_file: ./.env
+
+    container_name: "${FLASK_APP}"
+    build: ./
+    ports:
+      - "${FLASK_PORT}:${FLASK_PORT}"
+    volumes:
+      - .:/app
+    depends_on:
+      - flask_db
+
+  flask_db:
+    env_file: ./.env
+
+    container_name: "${FLASK_DB}"
+    image: postgres:latest
+    ports:
+      - "${POSTGRES_PORT}:${POSTGRES_PORT}"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata: {}

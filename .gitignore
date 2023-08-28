@@ -2,6 +2,7 @@
 .vscode
 
 # Python
+.ipynb_notebooks
 __pycache__
 
 # R
