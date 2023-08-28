@@ -1,0 +1,54 @@
+<style>
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .form_wrapper {
+        list-style-type: none;
+    }
+
+    .form_row {
+        display: flex;
+        margin-bottom: 3px;
+    }
+
+    .form_row > label {
+        flex: 1;
+    }
+
+    .form_row :is(input, button) {
+        flex: 2;
+    }
+</style>
+
+<div class="container">
+
+<h2>File upload demo</h2>
+
+<form action="/" method="post" enctype="multipart/form-data">
+    <ul class="form_wrapper">
+
+        <li class="form_row">
+            <label for="files">Upload files:</label>
+            <input type="file" name="files" multiple />
+        </li>
+        
+        <li class="form_row">
+            <button type="submit">Submit</button>
+        </li>
+
+    </ul>
+</form>
+
+{% if files %}
+<ul>
+    {% for id, name, date in files %}
+    <li>{{ date }}: <a href="{{ url_for('download', id=id) }}">{{ name }}</a></li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+</div>

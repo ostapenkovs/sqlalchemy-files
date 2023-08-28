@@ -10,6 +10,7 @@ services:
       - "${FLASK_PORT}:${FLASK_PORT}"
     volumes:
       - .:/app
+    restart: unless-stopped
     depends_on:
       - flask_db
 
@@ -22,6 +23,7 @@ services:
       - "${POSTGRES_PORT}:${POSTGRES_PORT}"
     volumes:
       - pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
 
 volumes:
   pgdata: {}
